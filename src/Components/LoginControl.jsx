@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const LoginContainer = styled.div`
@@ -19,42 +20,33 @@ const LoginButton = styled.button`
     
 `;
 
-class LoginControl extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { isLoggedIn: false };
-    }
+function LoginControl() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
-    handleLoginClick = () => {
-        this.setState({ isLoggedIn: true });
-    }
+    const handleLoginClick = () => {
+        setIsLoggedIn(true);
+        navigate('/');
+    };
 
-    handleLogoutClick = () => {
-        this.setState({ isLoggedIn: false });
-    }
+    const handleLogoutClick = () => {
+        setIsLoggedIn(false);
+        navigate('/'); 
+    };
 
-    render() {
-        const isLoggedIn = this.state.isLoggedIn;
-        let buttonText;
-        let welcomeMessage;
+    const buttonText = isLoggedIn ? "로그아웃" : "로그인";
+    const welcomeMessage = isLoggedIn ? <p>환영합니다!</p> : <p>로그인해주세요!</p>;
 
-        if (isLoggedIn) {
-            buttonText = "로그아웃";
-            welcomeMessage = <p>환영합니다!</p>;
-        } else {
-            buttonText = "로그인";
-            welcomeMessage = <p>로그인해주세요!</p>;
-        }
 
-        return (
-            <LoginContainer>
-                <LoginButton onClick={isLoggedIn ? this.handleLogoutClick : this.handleLoginClick}>
-                    {buttonText}
-                </LoginButton>
-                <WelcomeMessage>{welcomeMessage}</WelcomeMessage>
-            </LoginContainer>
-        );
-    }
+    return (
+        <LoginContainer>
+            <LoginButton onClick={isLoggedIn ? handleLogoutClick : handleLoginClick}>
+                {buttonText}
+            </LoginButton>
+            <WelcomeMessage>{welcomeMessage}</WelcomeMessage>
+        </LoginContainer>
+    );
 }
+
 
 export default LoginControl;
