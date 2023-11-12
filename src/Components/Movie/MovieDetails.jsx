@@ -1,17 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const MovieDetails = ({ movie }) => {
-    return (
-        <MovieDetialContainer>
-            <ContainerTitle>{movie.title}</ContainerTitle>
-            <ContainerOveriew>{movie.overview} </ContainerOveriew>
-        </MovieDetialContainer>
-    );
-}
-
-export default MovieDetails;
-
 const MovieDetialContainer = styled.div`
     position: absolute;
     top: 0;
@@ -40,3 +29,14 @@ const ContainerOveriew = styled.div`
     font-size: 1em;
     color: white;
 `;
+
+const MovieDetails = ({ movie }) => {
+    return (
+        <MovieDetialContainer>
+            <ContainerTitle>{movie.title}</ContainerTitle>
+            <ContainerOveriew>{movie.overview} </ContainerOveriew>
+        </MovieDetialContainer>
+    );
+}
+
+export default MovieDetails;
