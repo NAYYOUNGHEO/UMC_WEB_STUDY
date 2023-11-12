@@ -2,7 +2,7 @@ import React from 'react'
 
 function TV() {
   return (
-    <div>TV</div>
+    <div>TV 프로그램</div>
   )
 }
 
