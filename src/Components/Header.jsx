@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import LoginControl from './LoginControl';
 
 const StyledHeader = styled.header`
     background-color: #032541;
@@ -22,7 +23,7 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
-   margin-left: 20px;
+   margin-left: 30px;
 `;
 
 const StyledLink = styled(Link)`
@@ -44,6 +45,7 @@ function Header() {
         <NavItem><StyledLink to="/TV">TV 프로그램</StyledLink></NavItem>
         <NavItem><StyledLink to="/Celebrity">인물</StyledLink></NavItem>
       </NavList>
+      <LoginControl/>
     </StyledHeader>
   );
 }
