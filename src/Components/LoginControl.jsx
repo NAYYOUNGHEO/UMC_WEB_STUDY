@@ -31,7 +31,7 @@ function LoginControl() {
 
     const handleLogoutClick = () => {
         setIsLoggedIn(false);
-        navigate('/'); 
+        navigate('/login'); 
     };
 
     const buttonText = isLoggedIn ? "로그아웃" : "로그인";
