@@ -8,7 +8,6 @@ const TVContainer = styled.div`
   background-color: rgb(9, 129, 138);
 `;
 
-// TV 아이템 스타일
 const TVItem = styled.div`
   border: 1px solid #ccc;
   margin: 10px;
@@ -19,9 +18,9 @@ const TVItem = styled.div`
   background-color: rgb(156, 206, 209);
 `;
 
-// TV 포스터 스타일
 const TVPoster = styled.img`
   max-width: 100%;
+  display: block;
   height: auto;
 `;
 
@@ -45,8 +44,6 @@ const TvRate = styled.div`
     font-size: 25px;
 `;
 
-
-// TV 프로그램 목록 컴포넌트
 function TV() {
   return (
     <TVContainer>

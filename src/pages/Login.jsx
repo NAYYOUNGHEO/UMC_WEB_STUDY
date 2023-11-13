@@ -8,6 +8,12 @@ const LoginPageContainer = styled.div`
   align-items: left;
   justify-content: left;
   height: 100vh; 
+  width: 1000px; // 수정: 오타 수정 'weight' -> 'width'
+`;
+
+const InputContainer = styled.div`
+  width: 80%; // 입력 필드를 감싸는 컨테이너에 동일한 너비 지정
+  margin-bottom: 10px; // 각 입력 필드 사이의 간격
 `;
 
 const Label = styled.label`
@@ -31,23 +37,24 @@ const ErrorMessage = styled.div`
 `;
 
 const SubmitButton = styled.button`
-display: flex;
-justify-content: center;
-align-items: center;
-width: 80%; 
-border-radius: 30px;
-border: none;
-background-color: rgb(20, 32, 62); 
-color: white;
-margin-top: 20px; 
-cursor: pointer;
-font-weight: bold;
-padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%; 
+  border-radius: 30px;
+  border: none;
+  background-color: #ccc; // 수정: 초기 색상을 회색으로 설정
+  color: white;
+  margin-top: 20px; 
+  cursor: pointer;
+  font-weight: bold;
+  padding: 15px;
+  &:hover {
+    background-color: rgb(20, 32, 62); // 마우스 오버 시 색상 변경
+  }
 `;
 
 const PasswordInputContainer = styled.div`
-  width: 80%;
-  margin: 10px 0;
   position: relative;
 `;
 
@@ -62,7 +69,6 @@ const KeyIcon = styled.button`
   cursor: pointer;
   color: #ccc;
 `;
-
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -81,15 +87,13 @@ function Login() {
       e.preventDefault();
       let isValid = true;
   
-      // 이메일 유효성 검사
       if (!validateEmail(email)) {
         setEmailError('올바른 이메일을 입력해주세요.');
         isValid = false;
       } else {
         setEmailError('');
       }
-  
-      // 비밀번호 검사 (여기서는 단순히 비어있는지만 확인)
+
       if (password === '') {
         setPasswordError('형식에 맞춰 비밀번호를 입력해주세요.');
         isValid = false;
@@ -100,51 +104,57 @@ function Login() {
       if (isValid) {
         if (email === 'user@example.com' && password === 'password') {
             console.log('로그인 성공!');
-            navigate('/'); // 홈으로 리디렉션
-          } else {
+            navigate('/'); 
+        } else {
             alert('이메일 또는 비밀번호가 잘못되었습니다.');
-          }
+        }
       }
     };
   
     return (
         <LoginPageContainer>
           <h2>이메일과 비밀번호를 입력해주세요</h2>
-          <Label htmlFor="email">이메일 주소</Label>
-          <InputField
-            id="email"
-            type="email"
-            placeholder="email@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <ErrorMessage>{emailError}</ErrorMessage>
           
-          <Label htmlFor="password">비밀번호</Label>
-      <PasswordInputContainer>
-        <KeyIcon
-          onClick={() => setShowPasswordOptions(!showPasswordOptions)}
-        >
-          🔑
-        </KeyIcon>
-        <InputField
-          id="password"
-          type="password"
-          placeholder="영문, 숫자, 특수문자 포함 8자 이상"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {showPasswordOptions && (
-          <div>
-            <button onClick={() => setPassword('비밀번호')}>암호...</button>
-            <button onClick={() => setPassword('새로운암호')}>새로운 암호 제안</button>
-          </div>
-        )}
-      </PasswordInputContainer>
-      <ErrorMessage>{passwordError}</ErrorMessage>
-      <SubmitButton onClick={handleLogin}>확인</SubmitButton>
-    </LoginPageContainer>
-  );
+          <InputContainer>
+            <Label htmlFor="email">이메일 주소</Label>
+            <InputField
+              id="email"
+              type="email"
+              placeholder="email@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <ErrorMessage>{emailError}</ErrorMessage>
+          </InputContainer>
+          
+          <InputContainer>
+            <Label htmlFor="password">비밀번호</Label>
+            <PasswordInputContainer>
+              <KeyIcon
+                onClick={() => setShowPasswordOptions(!showPasswordOptions)}
+              >
+                🔑
+              </KeyIcon>
+              <InputField
+                id="password"
+                type="password"
+                placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {showPasswordOptions && (
+                <div>
+                  <button onClick={() => setPassword('비밀번호')}>암호...</button>
+                  <button onClick={() => setPassword('새로운암호')}>새로운 암호 제안</button>
+                </div>
+              )}
+            </PasswordInputContainer>
+            <ErrorMessage>{passwordError}</ErrorMessage>
+          </InputContainer>
+
+          <SubmitButton onClick={handleLogin}>확인</SubmitButton>
+        </LoginPageContainer>
+    );
 }
 
 export default Login;

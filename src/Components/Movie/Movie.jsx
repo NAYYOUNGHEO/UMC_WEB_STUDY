@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import MovieDetail from "../../pages/MovieDetail";
-import { MovieCard, MoviePoster, MovieInfo, MovieTitle, MovieRate } from "./Movie.style";
+import { MovieContainer, MovieCard, MoviePoster, MovieInfo, MovieTitle, MovieRate } from "./Movie.style";
 
 function Movie({ movie }) {
   const navigate = useNavigate(); 
@@ -14,17 +14,19 @@ function Movie({ movie }) {
   };
 
   return (
-      <MovieCard
-          onClick={handleClick}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-      >
-          <MoviePoster src={imageUrl} alt={movie.title} />
-          <MovieInfo>
-              <MovieTitle>{movie.title}</MovieTitle>
-              <MovieRate>{movie.vote_average}</MovieRate>
-          </MovieInfo>
-      </MovieCard>
+    <MovieContainer>
+        <MovieCard
+            onClick={handleClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <MoviePoster src={imageUrl} alt={movie.title} />
+            <MovieInfo>
+                <MovieTitle>{movie.title}</MovieTitle>
+                <MovieRate>{movie.vote_average}</MovieRate>
+            </MovieInfo>
+        </MovieCard>
+      </MovieContainer>
   );
 }
 
