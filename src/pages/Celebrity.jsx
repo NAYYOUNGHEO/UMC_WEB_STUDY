@@ -2,7 +2,7 @@ import React from 'react'
 
 function Celebrity() {
   return (
-    <div>Celebrity</div>
+    <div>인물</div>
   )
 }
 
